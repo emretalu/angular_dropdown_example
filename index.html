@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="listExample">
+	<head>
+		<title>Angular Lists</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script type="text/javascript" src="scripts.js"></script>
+	</head>
+	<body>
+		<div ng-controller="monthListCtrl" class="container">
+			<div class="form-group">
+				<label class="control-label" for="month">Months</label>
+				<select class="form-control input-lg" id="month" ng-model="monthName" ng-options="monthName for (monthCode, monthName) in months">
+					<option value="">Please Select...</option>
+				</select>
+			</div>
+		</div>
+		<br>
+		<div ng-controller="countryListCtrl" class="container">
+			<div class="form-group">
+				<label class="control-label" for="country">Countries</label>
+				<select id="country" ng-model="states" ng-options="country for (country, states) in countries">
+                    <option value=''>Please Select...</option>
+                </select>
+			</div>
+			<br>
+			<div class="form-group">
+				<label class="control-label" for="state">States</label>
+				<select id="state" ng-disabled="!states" ng-model="cities" ng-options="state for (state,city) in states">
+					<option value=''>Please Select...</option>
+				</select>
+			</div>
+			<br>
+			<div class="form-group">
+				<label class="control-label" for="city">Cities</label>
+				<select id="city" ng-disabled="!cities || !states" ng-model="city">
+					<option value=''>Please Select...</option>
+					<option ng-repeat="city in cities" value='{{city}}'>{{city}}</option>
+				</select>
+			</div>
+		</div>
+		<br>
+		<div ng-controller="productListCtrl" class="container">
+			<label class="control-label" for="products">Products</label>
+			<select id="CategoryL1" ng-model="Category1Val" ng-options="Category1Val.Name for Category1Val in Category1">
+				<option value=''>Please Select...</option>
+			</select>
+			<select id="CategoryL2" ng-model="Category2Val" ng-disabled="!Category1Val" ng-options="Category2Val.Name for Category2Val in Category1Val.Product">
+				<option value=''>Please Select...</option>
+			</select>
+		</div>
+	</body>
+</html>
